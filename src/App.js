@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
-import { View, ScreenSpinner, AdaptivityProvider, Panel, AppRoot, RichCell, CardGrid, ContentCard, UsersStack, Tabbar, TabbarItem, Group, Epic, ConfigProvider, SplitLayout, SplitCol, Button, PopoutWrapper, Div, Cell, ModalDismissButton, Snackbar, Avatar, Separator, PanelHeader } from '@vkontakte/vkui';
+import { View, ScreenSpinner, AdaptivityProvider, Panel, AppRoot, ActionSheet, ActionSheetItem, ContentCard, UsersStack, Tabbar, TabbarItem, Group, Epic, ConfigProvider, SplitLayout, SplitCol, Button, PopoutWrapper, Div, Cell, ModalDismissButton, Snackbar, Avatar, Separator, PanelHeader } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-import { Icon56ErrorTriangleOutline, Icon24Error, Icon16Done, Icon28InfoCircleOutline, Icon28UserCircleOutline, Icon28LocationMapOutline, Icon28BillheadOutline, Icon28ArticleOutline } from '@vkontakte/icons';
+import { Icon28Newsfeed, Icon28HomeOutline, Icon28SettingsOutline, Icon28InfoCircleOutline, Icon28UserCircleOutline, Icon28LocationMapOutline, Icon28BillheadOutline, Icon28ArticleOutline } from '@vkontakte/icons';
 import { usePlatform, withAdaptivity } from '@vkontakte/vkui';
 import { ViewWidth } from '@vkontakte/vkui';
 import { VKCOM } from '@vkontakte/vkui';
@@ -21,6 +21,10 @@ const App = () => {
 	const [popout, setPopout] = useState(/*<ScreenSpinner size='large' />*/null);
 	const [paramStart, setStart] = useState(null);
 	const [platform1, setPlatform] = useState(null)
+	const onClose = () => setPopout(null);
+	const onChange = (e) => setFilter(e.target.value);
+	const [filter, setFilter] = React.useState("best");
+	const selectableTargetRef = React.useRef();
 	
 
 
@@ -72,21 +76,21 @@ const App = () => {
 											onClick={() => { setActiveStory("home"), setActivePanel('home') }}
 											before={<Icon28ArticleOutline />}
 										>
-											Места
+											Главная
 										</Cell>
 										<Cell
 											disabled={activeStory === "food"}
 											onClick={() => { setActiveStory("food"), setActivePanel('food') }}
-											before={<Icon28BillheadOutline />}
+											before={<Icon28HomeOutline />}
 										>
-											Еда
+											Жильё
 										</Cell>
 										<Cell
 											disabled={activeStory === "route"}
 											onClick={() => setActiveStory("route")}
-											before={<Icon28LocationMapOutline />}
+											before={<Icon28Newsfeed />}
 										>
-											Маршруты
+											Новости
 										</Cell>
 										<Cell
 											disabled={activeStory === "event"}
@@ -98,7 +102,7 @@ const App = () => {
 										<Cell
 											disabled={activeStory === "tools"}
 											onClick={() => setActiveStory("tools")}
-											before={<Icon28InfoCircleOutline />}
+											before={<Icon28SettingsOutline />}
 										>
 											Инструменты
 										</Cell>
@@ -117,16 +121,16 @@ const App = () => {
 									<TabbarItem
 										selected={activeStory === "home"}
 										onClick={() => { setActiveStory("home"), setActivePanel('home') }}
-										text="Места"
+										text="Главная"
 									>
 										<Icon28ArticleOutline />
 									</TabbarItem>
 									<TabbarItem
 										selected={activeStory === "food"}
 										onClick={() => { setActiveStory("food"), setActivePanel('food') }}
-										text="Еда"
+										text="Жильё"
 									>
-										<Icon28BillheadOutline />
+										<Icon28HomeOutline />
 									</TabbarItem>
 									<TabbarItem
 										selected={activeStory === "route"}
@@ -138,21 +142,21 @@ const App = () => {
 									<TabbarItem
 										selected={activeStory === "event"}
 										onClick={() => setActiveStory("event")}
-										text="Мероприятия"
+										text="Новости"
 									>
-										<Icon28UserCircleOutline />
+										<Icon28Newsfeed />
 									</TabbarItem>
 									<TabbarItem
 										selected={activeStory === "tools"}
 										onClick={() => setActiveStory("tools")}
 										text="Инструменты"
 									>
-										<Icon28InfoCircleOutline />
+										<Icon28SettingsOutline />
 									</TabbarItem>
 								</Tabbar>
 							}>
 								<View id='home' activePanel={activePanel}>
-									<Home id='home' go={go} />
+									<Home id='home' go={go}/>
 								</View>
 								<View id='food' activePanel={activePanel}>
 									<Food id='food' go={go} />

@@ -6,7 +6,7 @@ import { Panel, PanelHeader, Header, Button, Group, Cell, Div, Avatar } from '@v
 const Food = ({ id, go, fetchedUser }) => {
     return(
 	<Panel id={id}>
-		<PanelHeader>Еда</PanelHeader>
+		<PanelHeader>Жильё</PanelHeader>
 		<Group header={<Header mode="secondary">Тут что то будет...</Header>}>
 		</Group>
 	</Panel>
