@@ -5,10 +5,8 @@ import { Panel, PanelHeader, Header, Button, Group, Cell, Div, Avatar } from '@v
 
 const Event = ({ id, go, fetchedUser }) => {
     return(
-
-        
 	<Panel id={id}>
-        <PanelHeader>Места</PanelHeader>
+        <PanelHeader>Мероприятия</PanelHeader>
         <Group header={<Header mode="secondary">Тут что то будет...</Header>}>
 		</Group>
 	</Panel>

@@ -5,7 +5,6 @@ import { Panel, PanelHeader, Header, Button, Group, Cell, Div, Avatar } from '@v
 
 const Tools = ({ id, go, fetchedUser }) => {
     return(
-
 	<Panel id={id}>
 		<PanelHeader>Инструменты</PanelHeader>
 		<Group header={<Header mode="secondary">Тут что то будет...</Header>}>

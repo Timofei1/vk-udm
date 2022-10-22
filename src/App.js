@@ -160,10 +160,10 @@ const App = () => {
 								<View id='route' activePanel={'route'}>
 									<Route id='route' go={go} />
 								</View>
-								<View id='event' activePanel={activePanel}>
+								<View id='event' activePanel={'event'}>
 									<Event id='event' go={go} />
 								</View>
-								<View id='tools' activePanel={activePanel}>
+								<View id='tools' activePanel={'tools'}>
 									<Tools id='tools' go={go} />
 								</View>
 							</Epic>
