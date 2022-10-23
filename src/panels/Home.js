@@ -10,10 +10,21 @@ import PlasesG from './Glazov/Plases';
 import PlasesV from './Votkinsk/Plases';
 import PlasesS from './Sarapul/Plases';
 
-const Home = ({ id, go, openSelectable }) => {
+/* import food */
+import FoodI from './Izhevsk/Food';
+import FoodG from './Glazov/Food';
+import FoodV from './Votkinsk/Food';
+import FoodS from './Sarapul/Food';
+
+/* import events */
+import EventsG from './Glazov/Events';
+import EventsI from './Izhevsk/Events';
+import EventsS from './Sarapul/Events';
+import EventsV from './Votkinsk/Events';
+
+const Home = ({ id, go, changeLocationVotkinsk, changeLocationIzhevsk, changeLocationSarapul, changeLocationGlazov, location }) => {
 	const [selected, setSelected] = React.useState("places");
 	const [isModalOpened_Loc, setModalOpened_Loc] = React.useState(false);
-	const [location, setLocation] = React.useState("izhevsk")
 
 	const MODAL_Loc = '1'
 
@@ -24,6 +35,10 @@ const Home = ({ id, go, openSelectable }) => {
 		border: "1px solid var(--vkui--color_image_placeholder_alpha)",
 		objectFit: "cover",
 	};
+
+	const Izhevsk = () => {
+		setModalOpened_Loc(false)
+	}
 
 	const modalloc = (
 		<ModalRoot
@@ -45,10 +60,10 @@ const Home = ({ id, go, openSelectable }) => {
 					</ModalPageHeader>
 				}
 			>
-				<SimpleCell before={location === 'izhevsk' && <Icon20CheckCircleOn />} onClick={() => { setLocation("izhevsk"), console.log(location), setModalOpened_Loc(false) }}>Ижевск</SimpleCell>
-				<SimpleCell before={location === 'votkinsk' && <Icon20CheckCircleOn />} onClick={() => { setLocation("votkinsk"), console.log(location), setModalOpened_Loc(false) }}>Воткинск</SimpleCell>
-				<SimpleCell before={location === 'glazov' && <Icon20CheckCircleOn />} onClick={() => { setLocation("glazov"), console.log(location), setModalOpened_Loc(false) }}>Глазов</SimpleCell>
-				<SimpleCell before={location === 'sarapul' && <Icon20CheckCircleOn />} onClick={() => { setLocation("sarapul"), console.log(location), setModalOpened_Loc(false) }}>Сарапул</SimpleCell>
+				<SimpleCell after={location === 'izhevsk' && <Icon20CheckCircleOn />} onClick={changeLocationIzhevsk}>Ижевск</SimpleCell>
+				<SimpleCell after={location === 'votkinsk' && <Icon20CheckCircleOn />} onClick={changeLocationVotkinsk}>Воткинск</SimpleCell>
+				<SimpleCell after={location === 'glazov' && <Icon20CheckCircleOn />} onClick={changeLocationGlazov}>Глазов</SimpleCell>
+				<SimpleCell after={location === 'sarapul' && <Icon20CheckCircleOn />} onClick={changeLocationSarapul}>Сарапул</SimpleCell>
 				<Div /><Div /><Div />
 			</ModalPage>
 		</ModalRoot>
@@ -74,16 +89,16 @@ const Home = ({ id, go, openSelectable }) => {
 								Места
 							</TabsItem>
 							<TabsItem
-								selected={selected === "hotels"}
-								onClick={() => setSelected("hotels")}
-							>
-								Еда
-							</TabsItem>
-							<TabsItem
-								selected={selected === "news"}
-								onClick={() => setSelected("news")}
+								selected={selected === "events"}
+								onClick={() => setSelected("events")}
 							>
 								Мероприятия
+							</TabsItem>
+							<TabsItem
+								selected={selected === "food"}
+								onClick={() => setSelected("food")}
+							>
+								Еда
 							</TabsItem>
 						</HorizontalScroll>
 					</Tabs>
@@ -91,7 +106,7 @@ const Home = ({ id, go, openSelectable }) => {
 				{selected === "places" && ///////////////////////////// МЕСТА //////////////////////////
 					<div>
 						{location === 'izhevsk' &&
-							<PlasesI />
+							<PlasesI go={go}/>
 						}
 						{location === 'votkinsk' &&
 							<PlasesV />
@@ -105,199 +120,38 @@ const Home = ({ id, go, openSelectable }) => {
 					</div>
 				}
 				{
-					selected === "hotels" &&
+					selected === "food" &&
 					<div>
-
-						<Group header={
-							<Header aside={<Link>Показать все</Link>}>Национальная кухня</Header>
-						}>
-							<CardScroll size="false">
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://img-global.cpcdn.com/recipes/0ec5ed844c474621/680x482cq70/pieriepiechi-udmurtskaia-kukhnia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg"
-									/>
-								</HorizontalCell>
-
-							</CardScroll>
-						</Group>
-						<Group header={
-							<Header aside={<Link>Показать все</Link>}>Фастфуд</Header>
-						}>
-							<CardScroll size="false">
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-
-							</CardScroll>
-						</Group>
-						<Group header={
-							<Header aside={<Link>Показать все</Link>}>Рестораны</Header>
-						}>
-							<CardScroll size="false">
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-
-							</CardScroll>
-						</Group>
+						{location === 'izhevsk' &&
+							<FoodI />
+						}
+						{location === 'votkinsk' &&
+							<FoodV />
+						}
+						{location === 'glazov' &&
+							<FoodG />
+						}
+						{location === 'sarapul' &&
+							<FoodS />
+						}
 					</div>
 				}
 				{
-					selected === "news" &&
-					<Group mode={<Header>Горячие новости</Header>}>
-						nope
-					</Group>
+					selected === "events" &&
+					<div>
+						{location === 'izhevsk' &&
+							<EventsI />
+						}
+						{location === 'votkinsk' &&
+							<EventsV />
+						}
+						{location === 'glazov' &&
+							<EventsG />
+						}
+						{location === 'sarapul' &&
+							<EventsS />
+						}
+					</div>
 				}
 			</Panel>
 		</SplitLayout>

@@ -8,9 +8,9 @@ import { ViewWidth } from '@vkontakte/vkui';
 import { VKCOM } from '@vkontakte/vkui';
 
 import Home from './panels/Home';
-import Food from './panels/Food';
+import News from './panels/News';
 import Route from './panels/Route';
-import Event from './panels/Event';
+import Hotels from './panels/Hotels';
 import Tools from './panels/Tools';
 
 const App = () => {
@@ -24,9 +24,8 @@ const App = () => {
 	const onClose = () => setPopout(null);
 	const onChange = (e) => setFilter(e.target.value);
 	const [filter, setFilter] = React.useState("best");
-	const selectableTargetRef = React.useRef();
-	
-
+	const selectableTargetRef = React.useRef();	
+	const [location, setLocation] = React.useState('izhevsk')
 
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data } }) => {
@@ -58,6 +57,21 @@ const App = () => {
 		setActivePanel(e.currentTarget.dataset.to);
 	};
 
+	async function changeLocationIzhevsk() {
+		setLocation('izhevsk')
+	}
+
+	async function changeLocationVotkinsk() {
+		setLocation('votkinsk')
+	}
+
+	async function changeLocationGlazov() {
+		setLocation('glazov')
+	}
+	async function changeLocationSarapul() {
+		setLocation('sarapul')
+	}
+
 	return (
 		<ConfigProvider scheme={scheme}>
 			<AdaptivityProvider>
@@ -79,8 +93,8 @@ const App = () => {
 											Главная
 										</Cell>
 										<Cell
-											disabled={activeStory === "food"}
-											onClick={() => { setActiveStory("food"), setActivePanel('food') }}
+											disabled={activeStory === "hotels"}
+											onClick={() => { setActiveStory("hotels"), setActivePanel('hotels') }}
 											before={<Icon28HomeOutline />}
 										>
 											Жильё
@@ -90,14 +104,14 @@ const App = () => {
 											onClick={() => setActiveStory("route")}
 											before={<Icon28Newsfeed />}
 										>
-											Новости
+											Маршруты
 										</Cell>
 										<Cell
-											disabled={activeStory === "event"}
-											onClick={() => setActiveStory("event")}
+											disabled={activeStory === "news"}
+											onClick={() => {setActiveStory("news"), console.log(location)}}
 											before={<Icon28UserCircleOutline />}
 										>
-											Мероприятия
+											Новости
 										</Cell>
 										<Cell
 											disabled={activeStory === "tools"}
@@ -126,8 +140,8 @@ const App = () => {
 										<Icon28ArticleOutline />
 									</TabbarItem>
 									<TabbarItem
-										selected={activeStory === "food"}
-										onClick={() => { setActiveStory("food"), setActivePanel('food') }}
+										selected={activeStory === "hotels"}
+										onClick={() => { setActiveStory("hotels"), setActivePanel('hotels') }}
 										text="Жильё"
 									>
 										<Icon28HomeOutline />
@@ -140,8 +154,8 @@ const App = () => {
 										<Icon28LocationMapOutline />
 									</TabbarItem>
 									<TabbarItem
-										selected={activeStory === "event"}
-										onClick={() => setActiveStory("event")}
+										selected={activeStory === "news"}
+										onClick={() => {setActiveStory("news"), console.log(location)}}
 										text="Новости"
 									>
 										<Icon28Newsfeed />
@@ -156,16 +170,16 @@ const App = () => {
 								</Tabbar>
 							}>
 								<View id='home' activePanel={activePanel}>
-									<Home id='home' go={go}/>
+									<Home id='home' go={go} changeLocationVotkinsk={changeLocationVotkinsk} changeLocationIzhevsk={changeLocationIzhevsk} changeLocationSarapul={changeLocationSarapul} changeLocationGlazov={changeLocationGlazov}  location={location}/>
 								</View>
-								<View id='food' activePanel={activePanel}>
-									<Food id='food' go={go} />
+								<View id='news' activePanel='news'>
+									<News id='news' go={go} />
 								</View>
 								<View id='route' activePanel={'route'}>
 									<Route id='route' go={go} />
 								</View>
-								<View id='event' activePanel={'event'}>
-									<Event id='event' go={go} />
+								<View id='hotels' activePanel={'hotels'}>
+									<Hotels id='hotels' go={go} />
 								</View>
 								<View id='tools' activePanel={'tools'}>
 									<Tools id='tools' go={go} />
