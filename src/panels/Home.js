@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Panel, PanelHeader, Link, CardScroll, HorizontalCell, Header, ModalRoot, SplitLayout, ModalPage, PanelHeaderButton, ModalPageHeader, ActionSheet, ActionSheetItem, Tabs, HorizontalScroll, Button, Group, Cell, Div, SimpleCell, TabsItem, Separator } from '@vkontakte/vkui';
-import { Icon28LocationOutline, Icon24Cancel } from '@vkontakte/icons';
+import { Icon28LocationOutline, Icon24Cancel, Icon20CheckCircleOn } from '@vkontakte/icons';
+
+/* import plases */
+import PlasesI from './Izhevsk/Plases';
+import PlasesG from './Glazov/Plases';
+import PlasesV from './Votkinsk/Plases';
+import PlasesS from './Sarapul/Plases';
 
 const Home = ({ id, go, openSelectable }) => {
 	const [selected, setSelected] = React.useState("places");
@@ -39,11 +45,10 @@ const Home = ({ id, go, openSelectable }) => {
 					</ModalPageHeader>
 				}
 			>
-				<SimpleCell onClick={() => { setLocation("izhevsk"), console.log(location) }}>Ижевск</SimpleCell>
-				<SimpleCell onClick={() => { setLocation("votkinsk"), console.log(location) }}>Воткинск</SimpleCell>
-				<SimpleCell onClick={() => { setLocation("glazov"), console.log(location) }}>Глазов</SimpleCell>
-				<SimpleCell onClick={() => { setLocation("sarapul"), console.log(location) }}>Сарапул</SimpleCell>
-				<SimpleCell onClick={() => { setLocation("mozhga"), console.log(location) }}>Можга</SimpleCell>
+				<SimpleCell before={location === 'izhevsk' && <Icon20CheckCircleOn />} onClick={() => { setLocation("izhevsk"), console.log(location), setModalOpened_Loc(false) }}>Ижевск</SimpleCell>
+				<SimpleCell before={location === 'votkinsk' && <Icon20CheckCircleOn />} onClick={() => { setLocation("votkinsk"), console.log(location), setModalOpened_Loc(false) }}>Воткинск</SimpleCell>
+				<SimpleCell before={location === 'glazov' && <Icon20CheckCircleOn />} onClick={() => { setLocation("glazov"), console.log(location), setModalOpened_Loc(false) }}>Глазов</SimpleCell>
+				<SimpleCell before={location === 'sarapul' && <Icon20CheckCircleOn />} onClick={() => { setLocation("sarapul"), console.log(location), setModalOpened_Loc(false) }}>Сарапул</SimpleCell>
 				<Div /><Div /><Div />
 			</ModalPage>
 		</ModalRoot>
@@ -58,8 +63,7 @@ const Home = ({ id, go, openSelectable }) => {
 					{location === 'votkinsk' && <div>Воткинск</div>}
 					{location === 'glazov' && <div>Глазов</div>}
 					{location === 'sarapul' && <div>Сарапул</div>}
-					{location === 'mozhga' && <div>Можга</div>}
-					</PanelHeader>
+				</PanelHeader>
 				<Group>
 					<Tabs>
 						<HorizontalScroll arrowSize="m">
@@ -86,252 +90,18 @@ const Home = ({ id, go, openSelectable }) => {
 				</Group>
 				{selected === "places" && ///////////////////////////// МЕСТА //////////////////////////
 					<div>
-						{location === 'izhevsk' && ///////////////////////////// МЕСТА ИЖЕВСКА //////////////////////////
-						<Group header={
-							<Header aside={<Link>Показать все</Link>}>Достопримечательности</Header>
-						}>
-							<CardScroll size="false">
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-						
-							</CardScroll>
-						</Group>}
-						{location === 'votkinsk' && ///////////////////////////// МЕСТА ВОТКИНСКА //////////////////////////
-						<Group header={
-							<Header aside={<Link>Показать все</Link>}>Достопримечательности</Header>
-						}>
-							<CardScroll size="false">
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://trave-l.ru/img/votkinsk/votkinsk01.jpg"
-									/>
-								</HorizontalCell>
-						
-							</CardScroll>
-						</Group>}
-						<Group header={
-							<Header aside={<Link>Показать все</Link>}>Музеи</Header>
-						}>
-							<CardScroll size="false">
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-
-							</CardScroll>
-						</Group>
-						<Group header={
-							<Header aside={<Link>Показать все</Link>}>Развлечения</Header>
-						}>
-							<CardScroll size="false">
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-								<HorizontalCell size="l" header="Название" subtitle="Примечание">
-									<img
-										style={largeImageStyles}
-										src="https://autotravel.ru/phalbum/91067/148.jpg"
-									/>
-								</HorizontalCell>
-
-							</CardScroll>
-						</Group>
+						{location === 'izhevsk' &&
+							<PlasesI />
+						}
+						{location === 'votkinsk' &&
+							<PlasesV />
+						}
+						{location === 'glazov' &&
+							<PlasesG />
+						}
+						{location === 'sarapul' &&
+							<PlasesS />
+						}
 					</div>
 				}
 				{
