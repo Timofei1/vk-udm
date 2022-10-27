@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Panel, PanelHeader, Header, Button, Group, Cell, SimpleCell, Footer, Div, Search, Avatar, ModalRoot, SplitLayout, ModalPage, PanelHeaderButton, ModalPageHeader, Separator } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Header, Button, Group, HorizontalCell, SimpleCell, Footer, Div, Search, Avatar, ModalRoot, SplitLayout, ModalPage, PanelHeaderButton, ModalPageHeader, Separator, Card, CardGrid } from '@vkontakte/vkui';
 import { Icon28LocationOutline, Icon24Cancel, Icon20CheckCircleOn } from '@vkontakte/icons';
 
 const News = ({ id, go, changeLocationVotkinsk, changeLocationIzhevsk, changeLocationSarapul, changeLocationGlazov, location }) => {
@@ -10,8 +10,8 @@ const News = ({ id, go, changeLocationVotkinsk, changeLocationIzhevsk, changeLoc
     const MODAL_Loc = '1'
 
     const largeImageStyles = {
-        width: 220,
-        height: 124,
+        width: '100%',
+        height: '100%',
         borderRadius: 8,
         border: "1px solid var(--vkui--color_image_placeholder_alpha)",
         objectFit: "cover",
@@ -60,8 +60,62 @@ const News = ({ id, go, changeLocationVotkinsk, changeLocationIzhevsk, changeLoc
                     {location === 'glazov' && <div>Глазов</div>}
                     {location === 'sarapul' && <div>Сарапул</div>}
                 </PanelHeader>
-                <Group header={<Header mode="secondary">Тут что то будет...</Header>}>
-                </Group>
+                <CardGrid size="m">
+                    <Card>
+                        <img
+                            style={largeImageStyles}
+                            src="https://s16.stc.yc.kpcdn.net/share/i/12/12781786/wr-750.webp"
+                        /><br/>Название новости
+                    </Card>
+                    <Card>
+                        <img
+                            style={largeImageStyles}
+                            src="https://s16.stc.yc.kpcdn.net/share/i/12/12781786/wr-750.webp"
+                        /><br/>Название новости
+                    </Card>
+                </CardGrid>
+                <CardGrid size="m">
+                    <Card>
+                        <img
+                            style={largeImageStyles}
+                            src="https://s16.stc.yc.kpcdn.net/share/i/12/12781786/wr-750.webp"
+                        /><br/>Название новости
+                    </Card>
+                    <Card>
+                        <img
+                            style={largeImageStyles}
+                            src="https://s16.stc.yc.kpcdn.net/share/i/12/12781786/wr-750.webp"
+                        /><br/>Название новости
+                    </Card>
+                </CardGrid>
+                <CardGrid size="m">
+                    <Card>
+                        <img
+                            style={largeImageStyles}
+                            src="https://s16.stc.yc.kpcdn.net/share/i/12/12781786/wr-750.webp"
+                        /><br/>Название новости
+                    </Card>
+                    <Card>
+                        <img
+                            style={largeImageStyles}
+                            src="https://s16.stc.yc.kpcdn.net/share/i/12/12781786/wr-750.webp"
+                        /><br/>Название новости
+                    </Card>
+                </CardGrid>
+                <CardGrid size="m">
+                    <Card>
+                        <img
+                            style={largeImageStyles}
+                            src="https://s16.stc.yc.kpcdn.net/share/i/12/12781786/wr-750.webp"
+                        /><br/>Название новости
+                    </Card>
+                    <Card>
+                        <img
+                            style={largeImageStyles}
+                            src="https://s16.stc.yc.kpcdn.net/share/i/12/12781786/wr-750.webp"
+                        /><br/>Название новости
+                    </Card>
+                </CardGrid>
 
             </Panel>
         </SplitLayout>

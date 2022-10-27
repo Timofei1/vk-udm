@@ -60,8 +60,104 @@ const Route = ({ id, go, changeLocationVotkinsk, changeLocationIzhevsk, changeLo
                     {location === 'glazov' && <div>Глазов</div>}
                     {location === 'sarapul' && <div>Сарапул</div>}
                 </PanelHeader>
-                <Group header={<Header mode="secondary">Тут что то будет...</Header>}>
-                </Group>
+                <Group>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+					<SimpleCell
+						before={<Avatar size={72} mode="app" src='https://maxoptra.ru/assets/img/blocks/advantage-card/route_2.png' />}
+						description="Примечание"
+					>
+						Маршрут
+					</SimpleCell>
+				</Group>
 
             </Panel>
         </SplitLayout>
