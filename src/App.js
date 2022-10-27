@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
-import { View, ScreenSpinner, AdaptivityProvider, Panel, AppRoot, ActionSheet, ActionSheetItem, ContentCard, UsersStack, Tabbar, TabbarItem, Group, Epic, ConfigProvider, SplitLayout, SplitCol, Button, PopoutWrapper, Div, Cell, ModalDismissButton, Snackbar, Avatar, Separator, PanelHeader } from '@vkontakte/vkui';
+import { View, ScreenSpinner, AdaptivityProvider, Panel, AppRoot, ModalPageHeader, PanelHeaderButton, ModalPage, ModalRoot, Tabbar, TabbarItem, Group, Epic, ConfigProvider, SplitLayout, SplitCol, Button, SimpleCell, Div, Cell, ModalDismissButton, Snackbar, Avatar, Separator, PanelHeader } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-import { Icon28Newsfeed, Icon28HomeOutline, Icon28SettingsOutline, Icon28InfoCircleOutline, Icon28UserCircleOutline, Icon28LocationMapOutline, Icon28BillheadOutline, Icon28ArticleOutline } from '@vkontakte/icons';
+import { Icon28Newsfeed, Icon28HomeOutline, Icon28SettingsOutline, Icon20CheckCircleOn, Icon28UserCircleOutline, Icon28LocationMapOutline, Icon24Cancel, Icon28ArticleOutline,  } from '@vkontakte/icons';
 import { usePlatform, withAdaptivity } from '@vkontakte/vkui';
 import { ViewWidth } from '@vkontakte/vkui';
 import { VKCOM } from '@vkontakte/vkui';
@@ -26,6 +26,9 @@ const App = () => {
 	const [filter, setFilter] = React.useState("best");
 	const selectableTargetRef = React.useRef();	
 	const [location, setLocation] = React.useState('izhevsk')
+	const [isModalOpened_Loc, setModalOpened_Loc] = React.useState(false);
+
+	const MODAL_Loc = '1'
 
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data } }) => {
@@ -71,6 +74,35 @@ const App = () => {
 	async function changeLocationSarapul() {
 		setLocation('sarapul')
 	}
+
+	const modalloc = (
+		<ModalRoot
+			activeModal={isModalOpened_Loc ? MODAL_Loc : null}
+			onClose={() => setModalOpened_Loc(false)}
+		>
+			<ModalPage
+				dynamicContentHeight
+				id={MODAL_Loc}
+				onClose={() => setModalOpened_Loc(false)}
+
+				header={
+					<ModalPageHeader
+						right={<PanelHeaderButton onClick={() => setModalOpened_Loc(false)} aria-label='Закрыть'>
+							<Icon24Cancel />
+						</PanelHeaderButton>}
+					>
+						Выбор города
+					</ModalPageHeader>
+				}
+			>
+				<SimpleCell after={location === 'izhevsk' && <Icon20CheckCircleOn />} onClick={changeLocationIzhevsk}>Ижевск</SimpleCell>
+				<SimpleCell after={location === 'votkinsk' && <Icon20CheckCircleOn />} onClick={changeLocationVotkinsk}>Воткинск</SimpleCell>
+				<SimpleCell after={location === 'glazov' && <Icon20CheckCircleOn />} onClick={changeLocationGlazov}>Глазов</SimpleCell>
+				<SimpleCell after={location === 'sarapul' && <Icon20CheckCircleOn />} onClick={changeLocationSarapul}>Сарапул</SimpleCell>
+				<Div /><Div /><Div />
+			</ModalPage>
+		</ModalRoot>
+	);
 
 	return (
 		<ConfigProvider scheme={scheme}>
@@ -173,16 +205,16 @@ const App = () => {
 									<Home id='home' go={go} changeLocationVotkinsk={changeLocationVotkinsk} changeLocationIzhevsk={changeLocationIzhevsk} changeLocationSarapul={changeLocationSarapul} changeLocationGlazov={changeLocationGlazov}  location={location}/>
 								</View>
 								<View id='news' activePanel='news'>
-									<News id='news' go={go} />
+									<News id='news' go={go}  changeLocationVotkinsk={changeLocationVotkinsk} changeLocationIzhevsk={changeLocationIzhevsk} changeLocationSarapul={changeLocationSarapul} changeLocationGlazov={changeLocationGlazov}  location={location}/>
 								</View>
 								<View id='route' activePanel={'route'}>
-									<Route id='route' go={go} />
+									<Route id='route' go={go}  changeLocationVotkinsk={changeLocationVotkinsk} changeLocationIzhevsk={changeLocationIzhevsk} changeLocationSarapul={changeLocationSarapul} changeLocationGlazov={changeLocationGlazov}  location={location}/>
 								</View>
 								<View id='hotels' activePanel={'hotels'}>
-									<Hotels id='hotels' go={go} />
+									<Hotels id='hotels' go={go}  changeLocationVotkinsk={changeLocationVotkinsk} changeLocationIzhevsk={changeLocationIzhevsk} changeLocationSarapul={changeLocationSarapul} changeLocationGlazov={changeLocationGlazov}  location={location}/>
 								</View>
 								<View id='tools' activePanel={'tools'}>
-									<Tools id='tools' go={go} />
+									<Tools id='tools' go={go}  changeLocationVotkinsk={changeLocationVotkinsk} changeLocationIzhevsk={changeLocationIzhevsk} changeLocationSarapul={changeLocationSarapul} changeLocationGlazov={changeLocationGlazov}  location={location}/>
 								</View>
 							</Epic>
 						</SplitCol>
